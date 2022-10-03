@@ -15,15 +15,31 @@ var options = {
     displayMode: 'regions',
     resolution: 'provinces',
 }
-const GeoChart = () => {
+
+interface Props {
+    data?: string[][];
+    loading: boolean;
+}
+
+const GeoChart = (props: Props) => {
+
     return (
-        <Chart
-            chartType="GeoChart"
-            width="100%"
-            height="400px"
-            data={data}
-            options={options}
-        />
+        <div>
+            {
+                props.loading && <div className="text-6xl"> Loading</div>
+            }
+            {!props.loading &&
+                <Chart
+                    chartType="GeoChart"
+                    width="100%"
+                    height="400px"
+                    data={props.data}
+                    options={options}
+                />
+            }
+
+        </div>
+
     );
 
 }
